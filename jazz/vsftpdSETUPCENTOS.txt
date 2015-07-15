@@ -1,0 +1,24 @@
+Adding SSL User for FTP
+
+VSFTP Setup instructions:
+
+http://www.server-world.info/en/note?os=CentOS_6&p=ftp
+
+**DO NOT ADD THE LINE: local_root=public_html **
+
+Specific end of file config lines for VSFTP:
+
+pam_service_name=vsftpd
+userlist_enable=YES
+tcp_wrappers=YES
+use_localtime=YES
+chroot_local_user=YES
+
+Once done run the following commands:
+
+ usermod --home /var/www/ ssl
+ groupadd www-data
+ usermod -a -G www-data ssl
+ chgrp -R www-data /var/www/*
+ chmod -R g+rw /var/www
+ find /var/www -type d -print0 | sudo xargs -0 chmod g+s
