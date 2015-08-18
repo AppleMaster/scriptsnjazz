@@ -1,0 +1,16 @@
+#be non root user (always)
+#cd tmp directory and download teamviewer rpm
+cd /tmp
+wget http://download.teamviewer.com/download/version_9x/teamviewer_linux.rpm
+#Also download the public key and import it
+wget http://thecultofsundeath.com/ssh/TeamViewer_Linux_PubKey.asc
+sudo rpm --import TeamViewer_Linux_PubKey.asc
+#install teamviewer! Huzzah
+sudo yum install teamviewer_linux.rpm
+
+#run teamviewer
+teamviewer
+
+
+
+
