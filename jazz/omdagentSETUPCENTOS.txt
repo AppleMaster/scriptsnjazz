@@ -1,0 +1,23 @@
+Setting up OMD to get a working Nagios server is really simple, but what makes this monitoring setup really awesome is how easy Check_MK makes finding, configuring and running these checks. 
+Setup the agent on your nodes, or just monitor SNMP/ping data, then tell Nagios/Check_MK which hosts to monitor and it will inventory and monitor all available checks it can find.
+
+
+[root@node1 ~]# yum install -y xinetd check-mk-agent
+This should create a check-mk-agent config file for xinetd at /etc/xinetd.d/check-mk-agent. We can edit one option for security, 
+I haven't tried running this as a regular user instead of root, but I should look into that. 
+Uncomment the following line and specify your Nagios servers IP or hostname.
+
+
+[root@node1 ~]# vim /etc/xinetd.d/check-mk-agent
+
+# configure the IP address(es) of your Nagios server here:
+only_from = 10.208.162.213
+
+
+Restart xinetd and set to start on boot.
+
+[root@node1 ~]# service xinetd start; chkconfig xinetd on
+
+
+Last step for the agent is opening port 6556 on your nodes at the firewall with iptables. I would also recommend limiting this port to your Nagios servers IP as the only source IP to hit port 6556 with -s. 
+That should complete the agent setup, xinetd should be listening on 6556 for our Nagios servers connections and iptables should be allowing traffic on port 6556 from our Nagios servers IP only.
