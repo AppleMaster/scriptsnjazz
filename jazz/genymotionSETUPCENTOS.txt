@@ -1,0 +1,34 @@
+#login as user that jenkins is running as 
+#install dependencies
+sudo yum -y install libpng12
+#go to opt dir
+
+cd /opt/
+
+#wget genymotion 
+sudo wget http://files2.genymotion.com/genymotion/genymotion-2.5.2/genymotion-2.5.2_x64.bin
+#Maybe change the version numbers to suit the version you want - assuming they keep this file convention
+#Make the bin executable
+
+sudo chmod +x genymotion-2.5.2_x64
+
+#make the executable easier to remember...
+
+sudo mv genymotion-2.5.2_x64.bin genymotion.bin
+
+#cd home dir
+cd ~
+
+#try running genymotion
+/opt/genymotion.bin
+
+#run through install process
+Installing to folder [/home/jenky/genymotion]. Are you sure [y/n] ? y/n
+
+#once installed, enter install directory i.e /home/jenky/genymotion/ and run genyshell
+cd /home/jenky/genymotion/
+./genyshell
+
+
+
+

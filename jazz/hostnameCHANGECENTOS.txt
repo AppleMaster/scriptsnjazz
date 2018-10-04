@@ -1,0 +1,11 @@
+Change your hostname to a different name of your choosing. For example:
+hostname server01
+
+Open the /etc/hosts file with your favorite text editor. For example:
+nano /etc/hosts
+Change the first line and replace your old hostname with the new one. Save the file and exit the editor.
+
+This file also contains your hostname. Open the /etc/sysconfig/network file with your favorite text editor.
+Change HOSTNAME=vultr to your desired hostname. For example: HOSTNAME=server01.
+
+hostname
